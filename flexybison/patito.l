@@ -8,7 +8,7 @@ using namespace std;
 
 %%
 [ \t\n]                                     ;
-program                                     return PROGRAM;
+programa                                    return PROGRAM;
 if                                          return IF;
 else                                        return ELSE;
 var                                         return VAR;

@@ -132,14 +132,8 @@ void yyerror(const char *s);
         | CTEFLOAT
         ;
 
-
-
-
   epsilon:
          ; 
-
-
-
 
 %%
 
