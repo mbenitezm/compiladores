@@ -10,7 +10,7 @@ tokens = lexer.tokens
 #Se declaran las reglan sintacticas
 def p_program(p):
   '''program : PROGRAM ID PUNTOCOMA a'''
-  print('valid expression')
+  print('valid expresion')
 
 def p_a(p):
   '''a : bloque
@@ -120,3 +120,5 @@ def check(filename):
   f = open(filename, 'r')
   data = f.read()
   f.close()
+  parser.parse(data)
+  
