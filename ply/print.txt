@@ -1,0 +1,6 @@
+program testing1 ; {
+  print("algo","algo2");
+  print("algo", "otroalgo");
+}
+
+

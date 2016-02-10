@@ -5,7 +5,6 @@ using namespace std;
 #define YY_DECL extern "C" int yylex()
 %}
 
-
 %%
 [ \t\n]                                     ;
 program                                     return PROGRAM;

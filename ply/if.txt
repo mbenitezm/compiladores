@@ -1,0 +1,6 @@
+program test;
+var a, b, c : int ; 
+{ if (a > b) {
+  a = 3;
+  };
+}

@@ -1,0 +1,1234 @@
+Created by PLY version 3.4 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    PUNTO
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> PROGRAM ID PUNTOCOMA a
+Rule 2     a -> bloque
+Rule 3     a -> vars bloque
+Rule 4     vars -> VAR b
+Rule 5     b -> c d
+Rule 6     c -> ID cprima
+Rule 7     cprima -> COMA c
+Rule 8     cprima -> epsilon
+Rule 9     d -> DOSPUNTOS tipo PUNTOCOMA e
+Rule 10    tipo -> INT
+Rule 11    tipo -> FLOAT
+Rule 12    e -> b
+Rule 13    e -> epsilon
+Rule 14    bloque -> ABRAQUET f CBRAQUET
+Rule 15    f -> estatuto f
+Rule 16    f -> epsilon
+Rule 17    estatuto -> ID IGUAL expresion PUNTOCOMA
+Rule 18    estatuto -> PRINT APARENTESIS g CPARENTESIS PUNTOCOMA
+Rule 19    estatuto -> IF APARENTESIS expresion CPARENTESIS bloque i PUNTOCOMA
+Rule 20    g -> expresion h
+Rule 21    g -> CTESTRING h
+Rule 22    h -> COMA g
+Rule 23    h -> epsilon
+Rule 24    i -> ELSE bloque
+Rule 25    i -> epsilon
+Rule 26    expresion -> exp j
+Rule 27    j -> MAYOR exp
+Rule 28    j -> MENOR exp
+Rule 29    j -> IGUALDAD exp
+Rule 30    j -> epsilon
+Rule 31    exp -> terminos k
+Rule 32    k -> SUMA terminos
+Rule 33    k -> RESTA terminos
+Rule 34    k -> epsilon
+Rule 35    terminos -> factor l
+Rule 36    l -> MULT factor
+Rule 37    l -> DIV factor
+Rule 38    l -> epsilon
+Rule 39    factor -> APARENTESIS expresion CPARENTESIS
+Rule 40    factor -> m varcte
+Rule 41    m -> SUMA
+Rule 42    m -> RESTA
+Rule 43    m -> epsilon
+Rule 44    varcte -> ID
+Rule 45    varcte -> CTEINT
+Rule 46    varcte -> CTEFLOAT
+Rule 47    epsilon -> <empty>
+
+Terminals, with rules where they appear
+
+ABRAQUET             : 14
+APARENTESIS          : 18 19 39
+CBRAQUET             : 14
+COMA                 : 7 22
+CPARENTESIS          : 18 19 39
+CTEFLOAT             : 46
+CTEINT               : 45
+CTESTRING            : 21
+DIV                  : 37
+DOSPUNTOS            : 9
+ELSE                 : 24
+FLOAT                : 11
+ID                   : 1 6 17 44
+IF                   : 19
+IGUAL                : 17
+IGUALDAD             : 29
+INT                  : 10
+MAYOR                : 27
+MENOR                : 28
+MULT                 : 36
+PRINT                : 18
+PROGRAM              : 1
+PUNTO                : 
+PUNTOCOMA            : 1 9 17 18 19
+RESTA                : 33 42
+SUMA                 : 32 41
+VAR                  : 4
+error                : 
+
+Nonterminals, with rules where they appear
+
+a                    : 1
+b                    : 4 12
+bloque               : 2 3 19 24
+c                    : 5 7
+cprima               : 6
+d                    : 5
+e                    : 9
+epsilon              : 8 13 16 23 25 30 34 38 43
+estatuto             : 15
+exp                  : 26 27 28 29
+expresion            : 17 19 20 39
+f                    : 14 15
+factor               : 35 36 37
+g                    : 18 22
+h                    : 20 21
+i                    : 19
+j                    : 26
+k                    : 31
+l                    : 35
+m                    : 40
+program              : 0
+terminos             : 31 32 33
+tipo                 : 9
+varcte               : 40
+vars                 : 3
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . PROGRAM ID PUNTOCOMA a
+
+    PROGRAM         shift and go to state 1
+
+    program                        shift and go to state 2
+
+state 1
+
+    (1) program -> PROGRAM . ID PUNTOCOMA a
+
+    ID              shift and go to state 3
+
+
+state 2
+
+    (0) S' -> program .
+
+
+
+state 3
+
+    (1) program -> PROGRAM ID . PUNTOCOMA a
+
+    PUNTOCOMA       shift and go to state 4
+
+
+state 4
+
+    (1) program -> PROGRAM ID PUNTOCOMA . a
+    (2) a -> . bloque
+    (3) a -> . vars bloque
+    (14) bloque -> . ABRAQUET f CBRAQUET
+    (4) vars -> . VAR b
+
+    ABRAQUET        shift and go to state 9
+    VAR             shift and go to state 7
+
+    a                              shift and go to state 5
+    bloque                         shift and go to state 8
+    vars                           shift and go to state 6
+
+state 5
+
+    (1) program -> PROGRAM ID PUNTOCOMA a .
+
+    $end            reduce using rule 1 (program -> PROGRAM ID PUNTOCOMA a .)
+
+
+state 6
+
+    (3) a -> vars . bloque
+    (14) bloque -> . ABRAQUET f CBRAQUET
+
+    ABRAQUET        shift and go to state 9
+
+    bloque                         shift and go to state 10
+
+state 7
+
+    (4) vars -> VAR . b
+    (5) b -> . c d
+    (6) c -> . ID cprima
+
+    ID              shift and go to state 13
+
+    c                              shift and go to state 11
+    b                              shift and go to state 12
+
+state 8
+
+    (2) a -> bloque .
+
+    $end            reduce using rule 2 (a -> bloque .)
+
+
+state 9
+
+    (14) bloque -> ABRAQUET . f CBRAQUET
+    (15) f -> . estatuto f
+    (16) f -> . epsilon
+    (17) estatuto -> . ID IGUAL expresion PUNTOCOMA
+    (18) estatuto -> . PRINT APARENTESIS g CPARENTESIS PUNTOCOMA
+    (19) estatuto -> . IF APARENTESIS expresion CPARENTESIS bloque i PUNTOCOMA
+    (47) epsilon -> .
+
+    ID              shift and go to state 18
+    PRINT           shift and go to state 17
+    IF              shift and go to state 19
+    CBRAQUET        reduce using rule 47 (epsilon -> .)
+
+    f                              shift and go to state 14
+    epsilon                        shift and go to state 15
+    estatuto                       shift and go to state 16
+
+state 10
+
+    (3) a -> vars bloque .
+
+    $end            reduce using rule 3 (a -> vars bloque .)
+
+
+state 11
+
+    (5) b -> c . d
+    (9) d -> . DOSPUNTOS tipo PUNTOCOMA e
+
+    DOSPUNTOS       shift and go to state 21
+
+    d                              shift and go to state 20
+
+state 12
+
+    (4) vars -> VAR b .
+
+    ABRAQUET        reduce using rule 4 (vars -> VAR b .)
+
+
+state 13
+
+    (6) c -> ID . cprima
+    (7) cprima -> . COMA c
+    (8) cprima -> . epsilon
+    (47) epsilon -> .
+
+    COMA            shift and go to state 22
+    DOSPUNTOS       reduce using rule 47 (epsilon -> .)
+
+    epsilon                        shift and go to state 23
+    cprima                         shift and go to state 24
+
+state 14
+
+    (14) bloque -> ABRAQUET f . CBRAQUET
+
+    CBRAQUET        shift and go to state 25
+
+
+state 15
+
+    (16) f -> epsilon .
+
+    CBRAQUET        reduce using rule 16 (f -> epsilon .)
+
+
+state 16
+
+    (15) f -> estatuto . f
+    (15) f -> . estatuto f
+    (16) f -> . epsilon
+    (17) estatuto -> . ID IGUAL expresion PUNTOCOMA
+    (18) estatuto -> . PRINT APARENTESIS g CPARENTESIS PUNTOCOMA
+    (19) estatuto -> . IF APARENTESIS expresion CPARENTESIS bloque i PUNTOCOMA
+    (47) epsilon -> .
+
+    ID              shift and go to state 18
+    PRINT           shift and go to state 17
+    IF              shift and go to state 19
+    CBRAQUET        reduce using rule 47 (epsilon -> .)
+
+    f                              shift and go to state 26
+    epsilon                        shift and go to state 15
+    estatuto                       shift and go to state 16
+
+state 17
+
+    (18) estatuto -> PRINT . APARENTESIS g CPARENTESIS PUNTOCOMA
+
+    APARENTESIS     shift and go to state 27
+
+
+state 18
+
+    (17) estatuto -> ID . IGUAL expresion PUNTOCOMA
+
+    IGUAL           shift and go to state 28
+
+
+state 19
+
+    (19) estatuto -> IF . APARENTESIS expresion CPARENTESIS bloque i PUNTOCOMA
+
+    APARENTESIS     shift and go to state 29
+
+
+state 20
+
+    (5) b -> c d .
+
+    ABRAQUET        reduce using rule 5 (b -> c d .)
+
+
+state 21
+
+    (9) d -> DOSPUNTOS . tipo PUNTOCOMA e
+    (10) tipo -> . INT
+    (11) tipo -> . FLOAT
+
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+
+    tipo                           shift and go to state 30
+
+state 22
+
+    (7) cprima -> COMA . c
+    (6) c -> . ID cprima
+
+    ID              shift and go to state 13
+
+    c                              shift and go to state 33
+
+state 23
+
+    (8) cprima -> epsilon .
+
+    DOSPUNTOS       reduce using rule 8 (cprima -> epsilon .)
+
+
+state 24
+
+    (6) c -> ID cprima .
+
+    DOSPUNTOS       reduce using rule 6 (c -> ID cprima .)
+
+
+state 25
+
+    (14) bloque -> ABRAQUET f CBRAQUET .
+
+    $end            reduce using rule 14 (bloque -> ABRAQUET f CBRAQUET .)
+    PUNTOCOMA       reduce using rule 14 (bloque -> ABRAQUET f CBRAQUET .)
+    ELSE            reduce using rule 14 (bloque -> ABRAQUET f CBRAQUET .)
+
+
+state 26
+
+    (15) f -> estatuto f .
+
+    CBRAQUET        reduce using rule 15 (f -> estatuto f .)
+
+
+state 27
+
+    (18) estatuto -> PRINT APARENTESIS . g CPARENTESIS PUNTOCOMA
+    (20) g -> . expresion h
+    (21) g -> . CTESTRING h
+    (26) expresion -> . exp j
+    (31) exp -> . terminos k
+    (35) terminos -> . factor l
+    (39) factor -> . APARENTESIS expresion CPARENTESIS
+    (40) factor -> . m varcte
+    (41) m -> . SUMA
+    (42) m -> . RESTA
+    (43) m -> . epsilon
+    (47) epsilon -> .
+
+    CTESTRING       shift and go to state 35
+    APARENTESIS     shift and go to state 44
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 43
+    ID              reduce using rule 47 (epsilon -> .)
+    CTEINT          reduce using rule 47 (epsilon -> .)
+    CTEFLOAT        reduce using rule 47 (epsilon -> .)
+
+    expresion                      shift and go to state 34
+    g                              shift and go to state 36
+    m                              shift and go to state 39
+    terminos                       shift and go to state 37
+    epsilon                        shift and go to state 38
+    exp                            shift and go to state 41
+    factor                         shift and go to state 42
+
+state 28
+
+    (17) estatuto -> ID IGUAL . expresion PUNTOCOMA
+    (26) expresion -> . exp j
+    (31) exp -> . terminos k
+    (35) terminos -> . factor l
+    (39) factor -> . APARENTESIS expresion CPARENTESIS
+    (40) factor -> . m varcte
+    (41) m -> . SUMA
+    (42) m -> . RESTA
+    (43) m -> . epsilon
+    (47) epsilon -> .
+
+    APARENTESIS     shift and go to state 44
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 43
+    ID              reduce using rule 47 (epsilon -> .)
+    CTEINT          reduce using rule 47 (epsilon -> .)
+    CTEFLOAT        reduce using rule 47 (epsilon -> .)
+
+    expresion                      shift and go to state 45
+    epsilon                        shift and go to state 38
+    m                              shift and go to state 39
+    terminos                       shift and go to state 37
+    exp                            shift and go to state 41
+    factor                         shift and go to state 42
+
+state 29
+
+    (19) estatuto -> IF APARENTESIS . expresion CPARENTESIS bloque i PUNTOCOMA
+    (26) expresion -> . exp j
+    (31) exp -> . terminos k
+    (35) terminos -> . factor l
+    (39) factor -> . APARENTESIS expresion CPARENTESIS
+    (40) factor -> . m varcte
+    (41) m -> . SUMA
+    (42) m -> . RESTA
+    (43) m -> . epsilon
+    (47) epsilon -> .
+
+    APARENTESIS     shift and go to state 44
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 43
+    ID              reduce using rule 47 (epsilon -> .)
+    CTEINT          reduce using rule 47 (epsilon -> .)
+    CTEFLOAT        reduce using rule 47 (epsilon -> .)
+
+    expresion                      shift and go to state 46
+    epsilon                        shift and go to state 38
+    m                              shift and go to state 39
+    terminos                       shift and go to state 37
+    exp                            shift and go to state 41
+    factor                         shift and go to state 42
+
+state 30
+
+    (9) d -> DOSPUNTOS tipo . PUNTOCOMA e
+
+    PUNTOCOMA       shift and go to state 47
+
+
+state 31
+
+    (10) tipo -> INT .
+
+    PUNTOCOMA       reduce using rule 10 (tipo -> INT .)
+
+
+state 32
+
+    (11) tipo -> FLOAT .
+
+    PUNTOCOMA       reduce using rule 11 (tipo -> FLOAT .)
+
+
+state 33
+
+    (7) cprima -> COMA c .
+
+    DOSPUNTOS       reduce using rule 7 (cprima -> COMA c .)
+
+
+state 34
+
+    (20) g -> expresion . h
+    (22) h -> . COMA g
+    (23) h -> . epsilon
+    (47) epsilon -> .
+
+    COMA            shift and go to state 49
+    CPARENTESIS     reduce using rule 47 (epsilon -> .)
+
+    h                              shift and go to state 48
+    epsilon                        shift and go to state 50
+
+state 35
+
+    (21) g -> CTESTRING . h
+    (22) h -> . COMA g
+    (23) h -> . epsilon
+    (47) epsilon -> .
+
+    COMA            shift and go to state 49
+    CPARENTESIS     reduce using rule 47 (epsilon -> .)
+
+    h                              shift and go to state 51
+    epsilon                        shift and go to state 50
+
+state 36
+
+    (18) estatuto -> PRINT APARENTESIS g . CPARENTESIS PUNTOCOMA
+
+    CPARENTESIS     shift and go to state 52
+
+
+state 37
+
+    (31) exp -> terminos . k
+    (32) k -> . SUMA terminos
+    (33) k -> . RESTA terminos
+    (34) k -> . epsilon
+    (47) epsilon -> .
+
+    SUMA            shift and go to state 55
+    RESTA           shift and go to state 56
+    MAYOR           reduce using rule 47 (epsilon -> .)
+    MENOR           reduce using rule 47 (epsilon -> .)
+    IGUALDAD        reduce using rule 47 (epsilon -> .)
+    COMA            reduce using rule 47 (epsilon -> .)
+    CPARENTESIS     reduce using rule 47 (epsilon -> .)
+    PUNTOCOMA       reduce using rule 47 (epsilon -> .)
+
+    epsilon                        shift and go to state 53
+    k                              shift and go to state 54
+
+state 38
+
+    (43) m -> epsilon .
+
+    ID              reduce using rule 43 (m -> epsilon .)
+    CTEINT          reduce using rule 43 (m -> epsilon .)
+    CTEFLOAT        reduce using rule 43 (m -> epsilon .)
+
+
+state 39
+
+    (40) factor -> m . varcte
+    (44) varcte -> . ID
+    (45) varcte -> . CTEINT
+    (46) varcte -> . CTEFLOAT
+
+    ID              shift and go to state 60
+    CTEINT          shift and go to state 58
+    CTEFLOAT        shift and go to state 57
+
+    varcte                         shift and go to state 59
+
+state 40
+
+    (41) m -> SUMA .
+
+    ID              reduce using rule 41 (m -> SUMA .)
+    CTEINT          reduce using rule 41 (m -> SUMA .)
+    CTEFLOAT        reduce using rule 41 (m -> SUMA .)
+
+
+state 41
+
+    (26) expresion -> exp . j
+    (27) j -> . MAYOR exp
+    (28) j -> . MENOR exp
+    (29) j -> . IGUALDAD exp
+    (30) j -> . epsilon
+    (47) epsilon -> .
+
+    MAYOR           shift and go to state 65
+    MENOR           shift and go to state 64
+    IGUALDAD        shift and go to state 61
+    COMA            reduce using rule 47 (epsilon -> .)
+    CPARENTESIS     reduce using rule 47 (epsilon -> .)
+    PUNTOCOMA       reduce using rule 47 (epsilon -> .)
+
+    epsilon                        shift and go to state 62
+    j                              shift and go to state 63
+
+state 42
+
+    (35) terminos -> factor . l
+    (36) l -> . MULT factor
+    (37) l -> . DIV factor
+    (38) l -> . epsilon
+    (47) epsilon -> .
+
+    MULT            shift and go to state 69
+    DIV             shift and go to state 67
+    SUMA            reduce using rule 47 (epsilon -> .)
+    RESTA           reduce using rule 47 (epsilon -> .)
+    MAYOR           reduce using rule 47 (epsilon -> .)
+    MENOR           reduce using rule 47 (epsilon -> .)
+    IGUALDAD        reduce using rule 47 (epsilon -> .)
+    COMA            reduce using rule 47 (epsilon -> .)
+    CPARENTESIS     reduce using rule 47 (epsilon -> .)
+    PUNTOCOMA       reduce using rule 47 (epsilon -> .)
+
+    epsilon                        shift and go to state 66
+    l                              shift and go to state 68
+
+state 43
+
+    (42) m -> RESTA .
+
+    ID              reduce using rule 42 (m -> RESTA .)
+    CTEINT          reduce using rule 42 (m -> RESTA .)
+    CTEFLOAT        reduce using rule 42 (m -> RESTA .)
+
+
+state 44
+
+    (39) factor -> APARENTESIS . expresion CPARENTESIS
+    (26) expresion -> . exp j
+    (31) exp -> . terminos k
+    (35) terminos -> . factor l
+    (39) factor -> . APARENTESIS expresion CPARENTESIS
+    (40) factor -> . m varcte
+    (41) m -> . SUMA
+    (42) m -> . RESTA
+    (43) m -> . epsilon
+    (47) epsilon -> .
+
+    APARENTESIS     shift and go to state 44
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 43
+    ID              reduce using rule 47 (epsilon -> .)
+    CTEINT          reduce using rule 47 (epsilon -> .)
+    CTEFLOAT        reduce using rule 47 (epsilon -> .)
+
+    expresion                      shift and go to state 70
+    epsilon                        shift and go to state 38
+    m                              shift and go to state 39
+    terminos                       shift and go to state 37
+    exp                            shift and go to state 41
+    factor                         shift and go to state 42
+
+state 45
+
+    (17) estatuto -> ID IGUAL expresion . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 71
+
+
+state 46
+
+    (19) estatuto -> IF APARENTESIS expresion . CPARENTESIS bloque i PUNTOCOMA
+
+    CPARENTESIS     shift and go to state 72
+
+
+state 47
+
+    (9) d -> DOSPUNTOS tipo PUNTOCOMA . e
+    (12) e -> . b
+    (13) e -> . epsilon
+    (5) b -> . c d
+    (47) epsilon -> .
+    (6) c -> . ID cprima
+
+    ABRAQUET        reduce using rule 47 (epsilon -> .)
+    ID              shift and go to state 13
+
+    c                              shift and go to state 11
+    b                              shift and go to state 73
+    e                              shift and go to state 74
+    epsilon                        shift and go to state 75
+
+state 48
+
+    (20) g -> expresion h .
+
+    CPARENTESIS     reduce using rule 20 (g -> expresion h .)
+
+
+state 49
+
+    (22) h -> COMA . g
+    (20) g -> . expresion h
+    (21) g -> . CTESTRING h
+    (26) expresion -> . exp j
+    (31) exp -> . terminos k
+    (35) terminos -> . factor l
+    (39) factor -> . APARENTESIS expresion CPARENTESIS
+    (40) factor -> . m varcte
+    (41) m -> . SUMA
+    (42) m -> . RESTA
+    (43) m -> . epsilon
+    (47) epsilon -> .
+
+    CTESTRING       shift and go to state 35
+    APARENTESIS     shift and go to state 44
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 43
+    ID              reduce using rule 47 (epsilon -> .)
+    CTEINT          reduce using rule 47 (epsilon -> .)
+    CTEFLOAT        reduce using rule 47 (epsilon -> .)
+
+    expresion                      shift and go to state 34
+    g                              shift and go to state 76
+    m                              shift and go to state 39
+    terminos                       shift and go to state 37
+    epsilon                        shift and go to state 38
+    exp                            shift and go to state 41
+    factor                         shift and go to state 42
+
+state 50
+
+    (23) h -> epsilon .
+
+    CPARENTESIS     reduce using rule 23 (h -> epsilon .)
+
+
+state 51
+
+    (21) g -> CTESTRING h .
+
+    CPARENTESIS     reduce using rule 21 (g -> CTESTRING h .)
+
+
+state 52
+
+    (18) estatuto -> PRINT APARENTESIS g CPARENTESIS . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 77
+
+
+state 53
+
+    (34) k -> epsilon .
+
+    MAYOR           reduce using rule 34 (k -> epsilon .)
+    MENOR           reduce using rule 34 (k -> epsilon .)
+    IGUALDAD        reduce using rule 34 (k -> epsilon .)
+    COMA            reduce using rule 34 (k -> epsilon .)
+    CPARENTESIS     reduce using rule 34 (k -> epsilon .)
+    PUNTOCOMA       reduce using rule 34 (k -> epsilon .)
+
+
+state 54
+
+    (31) exp -> terminos k .
+
+    MAYOR           reduce using rule 31 (exp -> terminos k .)
+    MENOR           reduce using rule 31 (exp -> terminos k .)
+    IGUALDAD        reduce using rule 31 (exp -> terminos k .)
+    COMA            reduce using rule 31 (exp -> terminos k .)
+    CPARENTESIS     reduce using rule 31 (exp -> terminos k .)
+    PUNTOCOMA       reduce using rule 31 (exp -> terminos k .)
+
+
+state 55
+
+    (32) k -> SUMA . terminos
+    (35) terminos -> . factor l
+    (39) factor -> . APARENTESIS expresion CPARENTESIS
+    (40) factor -> . m varcte
+    (41) m -> . SUMA
+    (42) m -> . RESTA
+    (43) m -> . epsilon
+    (47) epsilon -> .
+
+    APARENTESIS     shift and go to state 44
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 43
+    ID              reduce using rule 47 (epsilon -> .)
+    CTEINT          reduce using rule 47 (epsilon -> .)
+    CTEFLOAT        reduce using rule 47 (epsilon -> .)
+
+    epsilon                        shift and go to state 38
+    m                              shift and go to state 39
+    terminos                       shift and go to state 78
+    factor                         shift and go to state 42
+
+state 56
+
+    (33) k -> RESTA . terminos
+    (35) terminos -> . factor l
+    (39) factor -> . APARENTESIS expresion CPARENTESIS
+    (40) factor -> . m varcte
+    (41) m -> . SUMA
+    (42) m -> . RESTA
+    (43) m -> . epsilon
+    (47) epsilon -> .
+
+    APARENTESIS     shift and go to state 44
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 43
+    ID              reduce using rule 47 (epsilon -> .)
+    CTEINT          reduce using rule 47 (epsilon -> .)
+    CTEFLOAT        reduce using rule 47 (epsilon -> .)
+
+    epsilon                        shift and go to state 38
+    m                              shift and go to state 39
+    terminos                       shift and go to state 79
+    factor                         shift and go to state 42
+
+state 57
+
+    (46) varcte -> CTEFLOAT .
+
+    MULT            reduce using rule 46 (varcte -> CTEFLOAT .)
+    DIV             reduce using rule 46 (varcte -> CTEFLOAT .)
+    SUMA            reduce using rule 46 (varcte -> CTEFLOAT .)
+    RESTA           reduce using rule 46 (varcte -> CTEFLOAT .)
+    MAYOR           reduce using rule 46 (varcte -> CTEFLOAT .)
+    MENOR           reduce using rule 46 (varcte -> CTEFLOAT .)
+    IGUALDAD        reduce using rule 46 (varcte -> CTEFLOAT .)
+    COMA            reduce using rule 46 (varcte -> CTEFLOAT .)
+    CPARENTESIS     reduce using rule 46 (varcte -> CTEFLOAT .)
+    PUNTOCOMA       reduce using rule 46 (varcte -> CTEFLOAT .)
+
+
+state 58
+
+    (45) varcte -> CTEINT .
+
+    MULT            reduce using rule 45 (varcte -> CTEINT .)
+    DIV             reduce using rule 45 (varcte -> CTEINT .)
+    SUMA            reduce using rule 45 (varcte -> CTEINT .)
+    RESTA           reduce using rule 45 (varcte -> CTEINT .)
+    MAYOR           reduce using rule 45 (varcte -> CTEINT .)
+    MENOR           reduce using rule 45 (varcte -> CTEINT .)
+    IGUALDAD        reduce using rule 45 (varcte -> CTEINT .)
+    COMA            reduce using rule 45 (varcte -> CTEINT .)
+    CPARENTESIS     reduce using rule 45 (varcte -> CTEINT .)
+    PUNTOCOMA       reduce using rule 45 (varcte -> CTEINT .)
+
+
+state 59
+
+    (40) factor -> m varcte .
+
+    MULT            reduce using rule 40 (factor -> m varcte .)
+    DIV             reduce using rule 40 (factor -> m varcte .)
+    SUMA            reduce using rule 40 (factor -> m varcte .)
+    RESTA           reduce using rule 40 (factor -> m varcte .)
+    MAYOR           reduce using rule 40 (factor -> m varcte .)
+    MENOR           reduce using rule 40 (factor -> m varcte .)
+    IGUALDAD        reduce using rule 40 (factor -> m varcte .)
+    COMA            reduce using rule 40 (factor -> m varcte .)
+    CPARENTESIS     reduce using rule 40 (factor -> m varcte .)
+    PUNTOCOMA       reduce using rule 40 (factor -> m varcte .)
+
+
+state 60
+
+    (44) varcte -> ID .
+
+    MULT            reduce using rule 44 (varcte -> ID .)
+    DIV             reduce using rule 44 (varcte -> ID .)
+    SUMA            reduce using rule 44 (varcte -> ID .)
+    RESTA           reduce using rule 44 (varcte -> ID .)
+    MAYOR           reduce using rule 44 (varcte -> ID .)
+    MENOR           reduce using rule 44 (varcte -> ID .)
+    IGUALDAD        reduce using rule 44 (varcte -> ID .)
+    COMA            reduce using rule 44 (varcte -> ID .)
+    CPARENTESIS     reduce using rule 44 (varcte -> ID .)
+    PUNTOCOMA       reduce using rule 44 (varcte -> ID .)
+
+
+state 61
+
+    (29) j -> IGUALDAD . exp
+    (31) exp -> . terminos k
+    (35) terminos -> . factor l
+    (39) factor -> . APARENTESIS expresion CPARENTESIS
+    (40) factor -> . m varcte
+    (41) m -> . SUMA
+    (42) m -> . RESTA
+    (43) m -> . epsilon
+    (47) epsilon -> .
+
+    APARENTESIS     shift and go to state 44
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 43
+    ID              reduce using rule 47 (epsilon -> .)
+    CTEINT          reduce using rule 47 (epsilon -> .)
+    CTEFLOAT        reduce using rule 47 (epsilon -> .)
+
+    epsilon                        shift and go to state 38
+    m                              shift and go to state 39
+    terminos                       shift and go to state 37
+    exp                            shift and go to state 80
+    factor                         shift and go to state 42
+
+state 62
+
+    (30) j -> epsilon .
+
+    COMA            reduce using rule 30 (j -> epsilon .)
+    CPARENTESIS     reduce using rule 30 (j -> epsilon .)
+    PUNTOCOMA       reduce using rule 30 (j -> epsilon .)
+
+
+state 63
+
+    (26) expresion -> exp j .
+
+    COMA            reduce using rule 26 (expresion -> exp j .)
+    CPARENTESIS     reduce using rule 26 (expresion -> exp j .)
+    PUNTOCOMA       reduce using rule 26 (expresion -> exp j .)
+
+
+state 64
+
+    (28) j -> MENOR . exp
+    (31) exp -> . terminos k
+    (35) terminos -> . factor l
+    (39) factor -> . APARENTESIS expresion CPARENTESIS
+    (40) factor -> . m varcte
+    (41) m -> . SUMA
+    (42) m -> . RESTA
+    (43) m -> . epsilon
+    (47) epsilon -> .
+
+    APARENTESIS     shift and go to state 44
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 43
+    ID              reduce using rule 47 (epsilon -> .)
+    CTEINT          reduce using rule 47 (epsilon -> .)
+    CTEFLOAT        reduce using rule 47 (epsilon -> .)
+
+    epsilon                        shift and go to state 38
+    m                              shift and go to state 39
+    terminos                       shift and go to state 37
+    exp                            shift and go to state 81
+    factor                         shift and go to state 42
+
+state 65
+
+    (27) j -> MAYOR . exp
+    (31) exp -> . terminos k
+    (35) terminos -> . factor l
+    (39) factor -> . APARENTESIS expresion CPARENTESIS
+    (40) factor -> . m varcte
+    (41) m -> . SUMA
+    (42) m -> . RESTA
+    (43) m -> . epsilon
+    (47) epsilon -> .
+
+    APARENTESIS     shift and go to state 44
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 43
+    ID              reduce using rule 47 (epsilon -> .)
+    CTEINT          reduce using rule 47 (epsilon -> .)
+    CTEFLOAT        reduce using rule 47 (epsilon -> .)
+
+    epsilon                        shift and go to state 38
+    m                              shift and go to state 39
+    terminos                       shift and go to state 37
+    exp                            shift and go to state 82
+    factor                         shift and go to state 42
+
+state 66
+
+    (38) l -> epsilon .
+
+    SUMA            reduce using rule 38 (l -> epsilon .)
+    RESTA           reduce using rule 38 (l -> epsilon .)
+    MAYOR           reduce using rule 38 (l -> epsilon .)
+    MENOR           reduce using rule 38 (l -> epsilon .)
+    IGUALDAD        reduce using rule 38 (l -> epsilon .)
+    COMA            reduce using rule 38 (l -> epsilon .)
+    CPARENTESIS     reduce using rule 38 (l -> epsilon .)
+    PUNTOCOMA       reduce using rule 38 (l -> epsilon .)
+
+
+state 67
+
+    (37) l -> DIV . factor
+    (39) factor -> . APARENTESIS expresion CPARENTESIS
+    (40) factor -> . m varcte
+    (41) m -> . SUMA
+    (42) m -> . RESTA
+    (43) m -> . epsilon
+    (47) epsilon -> .
+
+    APARENTESIS     shift and go to state 44
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 43
+    ID              reduce using rule 47 (epsilon -> .)
+    CTEINT          reduce using rule 47 (epsilon -> .)
+    CTEFLOAT        reduce using rule 47 (epsilon -> .)
+
+    epsilon                        shift and go to state 38
+    m                              shift and go to state 39
+    factor                         shift and go to state 83
+
+state 68
+
+    (35) terminos -> factor l .
+
+    SUMA            reduce using rule 35 (terminos -> factor l .)
+    RESTA           reduce using rule 35 (terminos -> factor l .)
+    MAYOR           reduce using rule 35 (terminos -> factor l .)
+    MENOR           reduce using rule 35 (terminos -> factor l .)
+    IGUALDAD        reduce using rule 35 (terminos -> factor l .)
+    COMA            reduce using rule 35 (terminos -> factor l .)
+    CPARENTESIS     reduce using rule 35 (terminos -> factor l .)
+    PUNTOCOMA       reduce using rule 35 (terminos -> factor l .)
+
+
+state 69
+
+    (36) l -> MULT . factor
+    (39) factor -> . APARENTESIS expresion CPARENTESIS
+    (40) factor -> . m varcte
+    (41) m -> . SUMA
+    (42) m -> . RESTA
+    (43) m -> . epsilon
+    (47) epsilon -> .
+
+    APARENTESIS     shift and go to state 44
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 43
+    ID              reduce using rule 47 (epsilon -> .)
+    CTEINT          reduce using rule 47 (epsilon -> .)
+    CTEFLOAT        reduce using rule 47 (epsilon -> .)
+
+    epsilon                        shift and go to state 38
+    m                              shift and go to state 39
+    factor                         shift and go to state 84
+
+state 70
+
+    (39) factor -> APARENTESIS expresion . CPARENTESIS
+
+    CPARENTESIS     shift and go to state 85
+
+
+state 71
+
+    (17) estatuto -> ID IGUAL expresion PUNTOCOMA .
+
+    ID              reduce using rule 17 (estatuto -> ID IGUAL expresion PUNTOCOMA .)
+    PRINT           reduce using rule 17 (estatuto -> ID IGUAL expresion PUNTOCOMA .)
+    IF              reduce using rule 17 (estatuto -> ID IGUAL expresion PUNTOCOMA .)
+    CBRAQUET        reduce using rule 17 (estatuto -> ID IGUAL expresion PUNTOCOMA .)
+
+
+state 72
+
+    (19) estatuto -> IF APARENTESIS expresion CPARENTESIS . bloque i PUNTOCOMA
+    (14) bloque -> . ABRAQUET f CBRAQUET
+
+    ABRAQUET        shift and go to state 9
+
+    bloque                         shift and go to state 86
+
+state 73
+
+    (12) e -> b .
+
+    ABRAQUET        reduce using rule 12 (e -> b .)
+
+
+state 74
+
+    (9) d -> DOSPUNTOS tipo PUNTOCOMA e .
+
+    ABRAQUET        reduce using rule 9 (d -> DOSPUNTOS tipo PUNTOCOMA e .)
+
+
+state 75
+
+    (13) e -> epsilon .
+
+    ABRAQUET        reduce using rule 13 (e -> epsilon .)
+
+
+state 76
+
+    (22) h -> COMA g .
+
+    CPARENTESIS     reduce using rule 22 (h -> COMA g .)
+
+
+state 77
+
+    (18) estatuto -> PRINT APARENTESIS g CPARENTESIS PUNTOCOMA .
+
+    ID              reduce using rule 18 (estatuto -> PRINT APARENTESIS g CPARENTESIS PUNTOCOMA .)
+    PRINT           reduce using rule 18 (estatuto -> PRINT APARENTESIS g CPARENTESIS PUNTOCOMA .)
+    IF              reduce using rule 18 (estatuto -> PRINT APARENTESIS g CPARENTESIS PUNTOCOMA .)
+    CBRAQUET        reduce using rule 18 (estatuto -> PRINT APARENTESIS g CPARENTESIS PUNTOCOMA .)
+
+
+state 78
+
+    (32) k -> SUMA terminos .
+
+    MAYOR           reduce using rule 32 (k -> SUMA terminos .)
+    MENOR           reduce using rule 32 (k -> SUMA terminos .)
+    IGUALDAD        reduce using rule 32 (k -> SUMA terminos .)
+    COMA            reduce using rule 32 (k -> SUMA terminos .)
+    CPARENTESIS     reduce using rule 32 (k -> SUMA terminos .)
+    PUNTOCOMA       reduce using rule 32 (k -> SUMA terminos .)
+
+
+state 79
+
+    (33) k -> RESTA terminos .
+
+    MAYOR           reduce using rule 33 (k -> RESTA terminos .)
+    MENOR           reduce using rule 33 (k -> RESTA terminos .)
+    IGUALDAD        reduce using rule 33 (k -> RESTA terminos .)
+    COMA            reduce using rule 33 (k -> RESTA terminos .)
+    CPARENTESIS     reduce using rule 33 (k -> RESTA terminos .)
+    PUNTOCOMA       reduce using rule 33 (k -> RESTA terminos .)
+
+
+state 80
+
+    (29) j -> IGUALDAD exp .
+
+    COMA            reduce using rule 29 (j -> IGUALDAD exp .)
+    CPARENTESIS     reduce using rule 29 (j -> IGUALDAD exp .)
+    PUNTOCOMA       reduce using rule 29 (j -> IGUALDAD exp .)
+
+
+state 81
+
+    (28) j -> MENOR exp .
+
+    COMA            reduce using rule 28 (j -> MENOR exp .)
+    CPARENTESIS     reduce using rule 28 (j -> MENOR exp .)
+    PUNTOCOMA       reduce using rule 28 (j -> MENOR exp .)
+
+
+state 82
+
+    (27) j -> MAYOR exp .
+
+    COMA            reduce using rule 27 (j -> MAYOR exp .)
+    CPARENTESIS     reduce using rule 27 (j -> MAYOR exp .)
+    PUNTOCOMA       reduce using rule 27 (j -> MAYOR exp .)
+
+
+state 83
+
+    (37) l -> DIV factor .
+
+    SUMA            reduce using rule 37 (l -> DIV factor .)
+    RESTA           reduce using rule 37 (l -> DIV factor .)
+    MAYOR           reduce using rule 37 (l -> DIV factor .)
+    MENOR           reduce using rule 37 (l -> DIV factor .)
+    IGUALDAD        reduce using rule 37 (l -> DIV factor .)
+    COMA            reduce using rule 37 (l -> DIV factor .)
+    CPARENTESIS     reduce using rule 37 (l -> DIV factor .)
+    PUNTOCOMA       reduce using rule 37 (l -> DIV factor .)
+
+
+state 84
+
+    (36) l -> MULT factor .
+
+    SUMA            reduce using rule 36 (l -> MULT factor .)
+    RESTA           reduce using rule 36 (l -> MULT factor .)
+    MAYOR           reduce using rule 36 (l -> MULT factor .)
+    MENOR           reduce using rule 36 (l -> MULT factor .)
+    IGUALDAD        reduce using rule 36 (l -> MULT factor .)
+    COMA            reduce using rule 36 (l -> MULT factor .)
+    CPARENTESIS     reduce using rule 36 (l -> MULT factor .)
+    PUNTOCOMA       reduce using rule 36 (l -> MULT factor .)
+
+
+state 85
+
+    (39) factor -> APARENTESIS expresion CPARENTESIS .
+
+    MULT            reduce using rule 39 (factor -> APARENTESIS expresion CPARENTESIS .)
+    DIV             reduce using rule 39 (factor -> APARENTESIS expresion CPARENTESIS .)
+    SUMA            reduce using rule 39 (factor -> APARENTESIS expresion CPARENTESIS .)
+    RESTA           reduce using rule 39 (factor -> APARENTESIS expresion CPARENTESIS .)
+    MAYOR           reduce using rule 39 (factor -> APARENTESIS expresion CPARENTESIS .)
+    MENOR           reduce using rule 39 (factor -> APARENTESIS expresion CPARENTESIS .)
+    IGUALDAD        reduce using rule 39 (factor -> APARENTESIS expresion CPARENTESIS .)
+    COMA            reduce using rule 39 (factor -> APARENTESIS expresion CPARENTESIS .)
+    CPARENTESIS     reduce using rule 39 (factor -> APARENTESIS expresion CPARENTESIS .)
+    PUNTOCOMA       reduce using rule 39 (factor -> APARENTESIS expresion CPARENTESIS .)
+
+
+state 86
+
+    (19) estatuto -> IF APARENTESIS expresion CPARENTESIS bloque . i PUNTOCOMA
+    (24) i -> . ELSE bloque
+    (25) i -> . epsilon
+    (47) epsilon -> .
+
+    ELSE            shift and go to state 89
+    PUNTOCOMA       reduce using rule 47 (epsilon -> .)
+
+    i                              shift and go to state 87
+    epsilon                        shift and go to state 88
+
+state 87
+
+    (19) estatuto -> IF APARENTESIS expresion CPARENTESIS bloque i . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 90
+
+
+state 88
+
+    (25) i -> epsilon .
+
+    PUNTOCOMA       reduce using rule 25 (i -> epsilon .)
+
+
+state 89
+
+    (24) i -> ELSE . bloque
+    (14) bloque -> . ABRAQUET f CBRAQUET
+
+    ABRAQUET        shift and go to state 9
+
+    bloque                         shift and go to state 91
+
+state 90
+
+    (19) estatuto -> IF APARENTESIS expresion CPARENTESIS bloque i PUNTOCOMA .
+
+    ID              reduce using rule 19 (estatuto -> IF APARENTESIS expresion CPARENTESIS bloque i PUNTOCOMA .)
+    PRINT           reduce using rule 19 (estatuto -> IF APARENTESIS expresion CPARENTESIS bloque i PUNTOCOMA .)
+    IF              reduce using rule 19 (estatuto -> IF APARENTESIS expresion CPARENTESIS bloque i PUNTOCOMA .)
+    CBRAQUET        reduce using rule 19 (estatuto -> IF APARENTESIS expresion CPARENTESIS bloque i PUNTOCOMA .)
+
+
+state 91
+
+    (24) i -> ELSE bloque .
+
+    PUNTOCOMA       reduce using rule 24 (i -> ELSE bloque .)
+
