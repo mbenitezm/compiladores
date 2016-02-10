@@ -80,7 +80,7 @@ void yyerror(const char *s);
 
   estatuto: ID IGUAL expresion PUNTOCOMA
           | PRINT APARENTESIS g CPARENTESIS PUNTOCOMA
-          | IF APARENTESIS expresion CPARENTESIS PUNTO i PUNTOCOMA
+          | IF APARENTESIS expresion CPARENTESIS bloque i PUNTOCOMA
           ;
   g: expresion h
    | CTESTRING h
