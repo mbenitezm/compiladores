@@ -32,73 +32,74 @@ def p_tipo(p):
   '''tipo : INT
        | FLOAT'''
 
-  e: b
-   | epsilon
-   ;
+def p_e(p):
+  '''e: b
+   | epsilon'''
 
-  bloque: ABRAQUET f CBRAQUET
-        ;
+def p_bloque(p):
+  '''bloque: ABRAQUET f CBRAQUET'''
 
-  f: estatuto f
-   | epsilon
-   ;
+def p_f(p):
+  '''f: estatuto f
+   | epsilon'''
 
-  estatuto: ID IGUAL expresion PUNTOCOMA
+def p_estatuto(p):
+  '''estatuto: ID IGUAL expresion PUNTOCOMA
           | PRINT APARENTESIS g CPARENTESIS
-          | IF APARENTESIS expresion CPARENTESIS bloque i PUNTOCOMA
-          ;
-  g: expresion h
-   | CTESTRING h
-   ;
+          | IF APARENTESIS expresion CPARENTESIS bloque i PUNTOCOMA'''
 
-  h: PUNTOCOMA g
-   | epsilon
-   ;
+def p_g(p):
+  '''g: expresion h
+   | CTESTRING h '''
 
-  i: ELSE bloque
-   | epsilon
-   ;
+def p_h(p):
+  '''h: PUNTOCOMA g
+   | epsilon'''
 
-  expresion: exp j
-           ;
+def p_i(p):
+  '''i: ELSE bloque
+   | epsilon'''
 
-  j: MAYOR exp
+def p_expresion(p):
+  '''expresion: exp j'''
+
+def p_j(p):
+  '''j: MAYOR exp
    | MENOR exp
    | IGUALDAD exp
-   | epsilon
-   ;
+   | epsilon'''
 
-  exp: terminos k
-     ;
+def p_exp(p):
+  '''exp: terminos k'''
 
-  k: SUMA exp
+def p_k(p):
+  '''k: SUMA exp
    | RESTA
-   | epsilon
-   ;
+   | epsilon'''
 
-  terminos: factor l
-          ;
+def p_terminos(p):
+  '''terminos: factor l'''
 
-  l: MULT terminos
+def p_l(p):
+  '''l: MULT terminos
    | DIV terminos
-   | epsilon
-   ;
+   | epsilon'''
 
-  factor: APARENTESIS expresion CPARENTESIS
-        | m varcte
-        ;
+def p_factor(p):
+  '''factor: APARENTESIS expresion CPARENTESIS
+        | m varcte'''
 
-  m: SUMA
+def p_m(p):
+  '''m: SUMA
    | RESTA
-   | epsilon
-   ;
+   | epsilon'''
 
-  varcte: ID
+def p_varcte(p):
+  '''varcte: ID
         | CTEINT
-        | CTEFLOAT
-        ;
+        | CTEFLOAT'''
 
-  epsilon:
-         ; 
+def p_epsilon(p):
+  '''epsilon:'''
 
 parser = yacc.yacc()

@@ -8,7 +8,7 @@ using namespace std;
 
 %%
 [ \t\n]                                     ;
-programa                                    return PROGRAM;
+program                                     return PROGRAM;
 if                                          return IF;
 else                                        return ELSE;
 var                                         return VAR;
@@ -26,22 +26,17 @@ float                                       return FLOAT;
 \<                                          return MENOR;
 \<>                                         return IGUALDAD;
 \.                                          return PUNTO;
+\,                                          return COMA;
 \+                                          return SUMA;
 \-                                          return RESTA;
 \*                                          return MULT;
 \/                                          return DIV;
-[a-zA-Z]+[0-9]*_?[a-zA-Z0-9]+               return ID;
+[a-zA-Z]+[0-9]*(_[a-zA-Z0-9]+)?             return ID;
 \".*\"                                      return CTESTRING;
 [0-9]+                                      return CTEINT;
 [0-9]+\.+[0-9]+                             return CTEFLOAT;
-.                                           {cout << "ERROR DE LEXICO";};
+.                                           printf("Lex error in \n%c\n", yytext[0]);
 
 
 %%
-
-
-int main(int, char**) {
-  // lex through the input:
-  yylex();
-}
 

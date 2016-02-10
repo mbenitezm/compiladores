@@ -17,6 +17,7 @@ void yyerror(const char *s);
 %token VAR
 %token PRINT
 %token PUNTOCOMA
+%token COMA
 %token DOSPUNTOS
 %token IGUAL
 %token APARENTESIS
@@ -55,7 +56,7 @@ void yyerror(const char *s);
   c: ID cprima
    ;
 
-  cprima: PUNTO c
+  cprima: COMA c
         | epsilon
         ;
 
@@ -78,14 +79,14 @@ void yyerror(const char *s);
    ;
 
   estatuto: ID IGUAL expresion PUNTOCOMA
-          | PRINT APARENTESIS g CPARENTESIS
-          | IF APARENTESIS expresion CPARENTESIS bloque i PUNTOCOMA
+          | PRINT APARENTESIS g CPARENTESIS PUNTOCOMA
+          | IF APARENTESIS expresion CPARENTESIS PUNTO i PUNTOCOMA
           ;
   g: expresion h
    | CTESTRING h
    ;
 
-  h: PUNTOCOMA g
+  h: COMA g
    | epsilon
    ;
 
@@ -105,16 +106,16 @@ void yyerror(const char *s);
   exp: terminos k
      ;
 
-  k: SUMA exp
-   | RESTA
+  k: SUMA terminos
+   | RESTA terminos
    | epsilon
    ;
 
   terminos: factor l
           ;
 
-  l: MULT terminos
-   | DIV terminos
+  l: MULT factor
+   | DIV factor
    | epsilon
    ;
 
@@ -137,8 +138,21 @@ void yyerror(const char *s);
 
 %%
 
+
+int main (int argc, char *argv[]){
+  FILE *archivo = fopen(argv[1], "r");
+  if (!archivo){
+    cout << "El archivo no se pudo abrir" << endl;
+    return -1;
+  }
+  yyin = archivo;
+  do{
+    yyparse();
+  }while(!feof(yyin));
+  cout << "expresión válida" << endl;
+}
+
 void yyerror(const char *s) {
-  cout << "EEK, parse error!  Message: " << s << endl;
-  // might as well halt now:
+  cout << "Syntax error!  Message: " << s << endl;
   exit(-1);
 }
